@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>抽奖入口</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 40px;">
+  <h1>欢迎参加抽奖</h1>
+  <p>请输入你的名字开始：</p>
+  <form id="infoForm">
+    <input type="text" id="nameInput" placeholder="你的名字" required />
+    <br><br>
+    <button type="submit">开始抽奖 🎉</button>
+  </form>
+
+  <script>
+    document.getElementById('infoForm').addEventListener('submit', function(e) {
+      e.preventDefault();  // 阻止表单默认提交
+
+      const name = document.getElementById('nameInput').value;
+      // 把名字保存到 localStorage
+      localStorage.setItem('userName', name);
+      // 跳转到抽奖页
+      window.location.href = 'lottery.html';
+    });
+  </script>
+</body>
+</html>
