@@ -3,24 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>抽奖入口</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @media (max-width: 500px) {
+      body { padding: 10px !important; }
+      h1 { font-size: 1.4em !important; }
+      input, button { font-size: 1em !important; }
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 40px;">
+<body style="font-family: sans-serif; text-align: center; padding: 40px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
   <h1>欢迎参加抽奖</h1>
   <p>请输入你的名字开始：</p>
   <form id="infoForm">
-    <input type="text" id="nameInput" placeholder="你的名字" required />
+    <input type="text" id="nameInput" placeholder="你的名字" required
+           style="font-size: 1.2em; padding: 6px 12px; border-radius: 5px; border: 1px solid #ddd; width: 90vw; max-width: 300px; min-width: 120px;" />
     <br><br>
-    <button type="submit">开始抽奖 🎉</button>
+    <button type="submit"
+            style="font-size: 1.1em; padding: 6px 20px; border-radius: 5px; width: 90vw; max-width: 220px;">
+      开始抽奖 🎉
+    </button>
   </form>
-
   <script>
     document.getElementById('infoForm').addEventListener('submit', function(e) {
-      e.preventDefault();  // 阻止表单默认提交
-
-      const name = document.getElementById('nameInput').value;
-      // 把名字保存到 localStorage
+      e.preventDefault();
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) {
+        alert('请输入有效的名字！');
+        return;
+      }
       localStorage.setItem('userName', name);
-      // 跳转到抽奖页
       window.location.href = 'lottery.html';
     });
   </script>
